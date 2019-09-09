@@ -1,0 +1,183 @@
+
+
+* DONE Start emacs
+* DONE Start an interactive python shell
+
+to use ipython by default, highlight the region below, and M-x
+eval-region:
+
+  (setq python-shell-interpreter "ipython"
+        python-shell-interpreter-args "--simple-prompt -i")
+
+(optional: add the above text to init.el)
+
+Start a shell with; M-x run-python
+
+(This is supposed to be linked to C-c C-p under python-mode, but
+ I never got the keyboard shortcut to work.)
+
+Go to the shell,and enter the command
+  x = 1
+
+To re-use and modify that command, do M-p, and change it to
+  x = 2
+
+* DONE Evaluate lines of code
+
+Save a file as emacs-python-code.py
+
+  this starts python-org mode
+
+in emacs-python-code.py, write:
+
+  x=1
+  print("value is", x)
+  print("hello")
+
+Put the point anywhere in the above block of code, and run it using:
+
+  C-M-x python-send-shell-defun
+
+Highlight only the line that prints hello, and run:
+
+  C-c C-r python-send-shell-region
+
+* DONE Adjust indenting
+
+write this function (the bad indenting is intentional)
+
+def my_func():
+    x = ""
+  while x != "q":
+  x = input("type a letter, q to quit")
+
+  print("bye")
+
+Go over each line and
+hit the TAB key to indent properly. For the print("bye") line, keep
+hitting tab until it cycles to only 1 indent.
+
+TODO align a region? (indent-region, C-M-\, wasn't doing anything) 
+
+** Evaluate whole script
+
+To send this function definition to the shell, from anywhere within
+the function, run C-M-x, python-shell-send-defun
+
+on a new line, write:
+
+  my_func()
+
+Highlight the line with M-h, then C-c C-r to send region. Then go to
+the iPython buffer to answer the questions.
+
+** run whole script
+
+write this:
+
+if __name__=='__main__':
+    print("From main, starting my_func")
+    my_func()
+
+Run the whole script again, with C-c C-c, typing 'q' at the prompt to exit.
+
+
+
+
+write this code:
+
+def my_arg_func(a, b=1, c=None):
+  """A function with arguments and documentation
+
+  :a first arg
+  :b second arg, default to 1
+  :c third arg, default to None
+  """
+  return(a, b, c)
+
+use the keyboard shortcut to jump up and down by function
+
+put the cursor within the main call to my_func() and jump
+the the function definition
+
+go to my_func, add 'if True:' at the beginning, and reindent the whole
+function
+
+
+write this code fragment:
+
+my_arg
+
+get autocompletion on the function name
+
+get argument help
+
+* TODO Mark ring
+
+Go down to the line print("From main ...
+
+  Type C-SPC C-SPC
+
+Go up to my_func and add some doc comments. Then to return to where
+you were previously:
+
+  Type C-u C-SPC
+
+More:
+
+ http://ergoemacs.org/emacs/emacs_jump_to_previous_position.html
+
+
+* Wish list
+
+Set mark, go someplace else, jump back to it
+
+Type a function name and search to the function definition
+
+auto-complete a function name
+
+highlighting a function name, go to definition
+
+Collapse all the functions
+
+emacs ipthon, get previous cell input (up, C-p, etc)
+
+comment block
+
+* notes
+
+reindent region
+  tab does 1 line
+  C-c > indents line or region
+  C-c < unindents line or region
+ 
+  TAB   indent-for-tab-command
+        inserts a tab, or indents, or symbol completion
+          tab-always-indent
+        indent-line-function
+  
+jump to next function
+
+
+
+
+x=1
+
+autocomplete a word
+
+  https://www.jefftk.com/p/python-navigation-in-emacs
+
+  ; move quick-help tooltips to the minibuffer
+  (setq jedi:tooltip-method nil)
+  
+  ; don't auto-complete unless requested
+  (setq ac-auto-start nil)
+  (setq ac-auto-show-menu nil)
+  (define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
+  
+  (add-hook 'python-mode-hook 'jedi:setup)
+  
+
+See doc help or arg help on function
+
+https://stackoverflow.com/questions/11363089/how-do-i-install-python-mode-el-for-emacs

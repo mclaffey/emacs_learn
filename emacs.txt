@@ -1,0 +1,129 @@
+
+* Wish list
+
+What is a "sexp"?
+
+What is a "defun"?
+
+write a macro, save it permanently, assign it a keystroke
+
+delete line and close gap (as opposed to what C-a C-k does)
+
+indent
+  using tab and shift-tab
+  setting tab stops for schedule, for entire buffer
+
+save point on scroll, so that C-v then M-v returns to the same place
+
+single key stroke for org-mode
+
+auto-fill-mode - single keystroke, or automatically for all documents
+
+move forward over word and whitespace to start of next word
+      5       example
+
+keystroke: go to last buffer (instead of C-x b RET)
+
+integration with x clipboard
+
+* Navigating
+
+M-r  without moving text, move point to middle/top/bottom
+
+M-g g goto-line, with numeric argument
+
+* Narrowing
+C-x n n    narrow-to-region
+C-x n w    widen
+
+* Mouse Wheel
+
+** (xterm-mouse-mode)
+
+When this command is run, the two finger scroll produces the message:
+  '<mouse-4> is undefined' for down
+  '<mouse-5> is undefined' for up
+
+* Outline mode
+
+C-u TAB  rotate through buffer states
+         OVERVIEW - shows only heading 1
+	 CONTENTS - all headings, no bodies
+	 SHOW-ALL - shows everything
+
+* Org mode
+
+** schedule
+  DEADLINE: <2019-08-22 Thu> SCHEDULED: <2019-08-15 Thu>
+Cc Cs to schedule
+Cc Cd deadline
+
+** add to agenda files
+Cc [
+
+Mx org-agenda
+to see agenda
+
+* 11 The Mark and the Kill Ring
+
+The region highlighting when you set the mark is transient mark mode
+
+C-SPC        set-mark-command
+C-x C-x      exchange-point-and-mark
+
+C-SPC C-SPC  set mark but deactivate it
+C-u C-SPC    return (this is set-mark-command with a prefix arg)
+
+M-h        mark-paragraph
+C-x C-p    mark-page
+C-x h      mark-whole-buffer
+
+M-@        mark-word. selects forward. repeat with M-@ C-x zzzz
+
+C-M-@      mark-sexp. I still don't have a grasp of expressions
+
+C-M-h      mark-defun
+C-M-a      beginning-of-defun
+C-M-e      end-of-defun
+
+** Using region
+
+C-x C-l    lower case
+C-x C-u    upper case
+C-u C-/    undo within region
+M-%        replace text within region
+C-x TAB    indent
+M-x        fill-region
+M-$        check spelling
+M-x        eval-region
+C-x r s    save to register
+
+** Mark ring
+
+C-x C-SPC  pop-global-mark
+
+* 12 Killing and Moving Text
+
+** Cut and Paste
+
+Help says EMACS uses clipbord by default with kill/yank. Mine does
+not. Help said to set x-select-enable-clipboard, but I don't even have
+that variable.
+
+clipboard-kill-region didn't paste in another application, but
+clipboard-yank did repaste the value in emacs.
+
+x-select-enable-clipboard
+x-select-enable-primary
+
+** 12.4 Accumulating text
+
+append-to-buffer
+prepend-to-buffer
+copy-to-buffer (overwrites)
+insert-buffer (e.g. insert what you've been accumulation)
+append-to-file
+
+** 12.5 Rectangles
+
+
